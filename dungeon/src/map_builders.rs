@@ -65,7 +65,7 @@ impl MapBuilder {
 
     fn build_corridors(&mut self, rng: &mut RandomNumberGenerator) {
         let mut rooms = self.rooms.clone();
-        // cmp() compares two elements and indicate if they are 
+        // cmp() compares two elements and indicate if they are
         // the same or one is greater
         rooms.sort_by(|a, b| a.center().x.cmp(&b.center().x));
 
@@ -74,10 +74,10 @@ impl MapBuilder {
         // tuples are created with (..)
         // can be destructured as let (a,b,c) = tuple; - turning them into named variables
         for (i, room) in rooms.iter().enumerate().skip(1) {
-            let prev = rooms[i-1].center();
+            let prev = rooms[i - 1].center();
             let new = room.center();
 
-            if rng.range(0,2) == 1 {
+            if rng.range(0, 2) == 1 {
                 self.apply_horizontal_tunnel(prev.x, new.x, prev.y);
                 self.apply_vertical_tunnel(prev.y, new.y, new.x);
             } else {
@@ -88,10 +88,10 @@ impl MapBuilder {
     }
 
     pub fn new(rng: &mut RandomNumberGenerator) -> Self {
-        let mut mb = MapBuilder{
+        let mut mb = MapBuilder {
             map: Map::new(),
             rooms: Vec::new(),
-            player_start: Point::zero()
+            player_start: Point::zero(),
         };
         mb.fill(TileType::Wall);
         mb.build_random_rooms(rng);
