@@ -1,5 +1,5 @@
 use crate::prelude::*;
-const NUM_ROOMS: usize = 30;
+const NUM_ROOMS: usize = 40;
 
 //mapbuilder uses its own copy of the map and passes it to the game
 //room-carving algorithms
