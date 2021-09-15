@@ -15,3 +15,7 @@ pub struct Render {
 // this is to serve to indicate the player component to be the Player
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct Player;
+
+// another empty class tag for enemies
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct Enemy;
