@@ -47,7 +47,7 @@ impl State {
             resources,
             systems: build_scheduler()
         }
-}
+}}
 
 impl GameState for State {
     fn tick(&mut self, ctx: &mut BTerm) {
