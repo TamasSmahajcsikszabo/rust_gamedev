@@ -6,7 +6,7 @@ pub use crate::prelude::*;
 
 // components are pushed as a tuple
 // push creates a new entity
-pub fn spawn_player(ecs: &mut World, pos: Point) {
+pub fn spawn_player(ecs: &mut World, pos: Point, score: i32) {
     // the player is crated and pushed on the map:
     ecs.push((
         Player, //tag
@@ -15,6 +15,7 @@ pub fn spawn_player(ecs: &mut World, pos: Point) {
             color: ColorPair::new(WHITE, BLACK),
             glyph: to_cp437('@'),
         },
+        score,
     ));
 }
 
@@ -29,7 +30,8 @@ pub fn spawn_monster(ecs: &mut World, rng: &mut RandomNumberGenerator, pos: Poin
                 1 => to_cp437('O'),
                 2 => to_cp437('o'),
                 _ => to_cp437('g'),
-            },
+            }
         },
+        MovingRandomly {}
     ));
 }

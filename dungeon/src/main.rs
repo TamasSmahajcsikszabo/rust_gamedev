@@ -39,7 +39,7 @@ impl State {
         let mut resources = Resources::default();
         let mut rng = RandomNumberGenerator::new();
         let map_builder = MapBuilder::new(&mut rng);
-        spawn_player(&mut ecs, map_builder.player_start);
+        spawn_player(&mut ecs, map_builder.player_start, 0);
         map_builder.rooms
             .iter()
             .skip(1)
