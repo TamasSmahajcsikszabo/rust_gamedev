@@ -39,19 +39,35 @@ impl Map {
     }
 
     pub fn can_enter_tile_n(&self, start: Point, end: Point) -> bool {
+        let point_diff: Point = end - start;
         let mut results: i32 = 0;
         let mut length: Vec<i32> = Vec::new();
-        for x in start.x..=end.x {
-            for y in start.y..=end.y {
-                length.push(1);
-                let local_test = self.can_enter_tile(Point::new(x, y));
-                if local_test == true {
-                    results += 1;
+
+        if point_diff.x + point_diff.y != 0 {
+            // horizontal check
+            if point_diff.y == 0 {
+                for x in start.x..=end.x {
+                    length.push(1);
+                    let local_test = self.can_enter_tile(Point::new(x, end.y));
+                    if local_test == true {
+                        results += 1;
+                    }
+                }
+            }
+
+            // vertical check
+            if point_diff.x == 0 {
+                for y in start.y..=end.y {
+                    length.push(1);
+                    let local_test = self.can_enter_tile(Point::new(end.x, y));
+                    if local_test == true {
+                        results += 1;
+                    }
                 }
             }
         }
+
         let sum: i32 = length.iter().sum();
-        println!("Results:{} -- Sum:{}", results, sum);
         results == sum
     }
 
