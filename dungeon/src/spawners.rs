@@ -24,7 +24,7 @@ pub fn spawn_monster(ecs: &mut World, rng: &mut RandomNumberGenerator, pos: Poin
         Enemy,
         pos,
         Render {
-            color: ColorPair::new(WHITE, BLACK),
+            color: ColorPair::new(WHITE,BLACK),
             glyph: match rng.range(0, 4) {
                 0 => to_cp437('E'),
                 1 => to_cp437('O'),
