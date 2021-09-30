@@ -17,13 +17,9 @@ pub fn entity_render(ecs: &SubWorld, #[resource] camera: &Camera) {
     // query over a tuple, returning elements having both components
     <(&Point, &Render)>::query()
         .iter(ecs) // specify which subWorld to use
-        .for_each(|(pos, render)| { // destructuring in action
-            draw_batch.set(
-                *pos - offset,
-                render.color,
-                render.glyph
-            );
-        }
-    );
+        .for_each(|(pos, render)| {
+            // destructuring in action
+            draw_batch.set(*pos - offset, render.color, render.glyph);
+        });
     draw_batch.submit(5000).expect("Batch error");
 }

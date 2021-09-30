@@ -22,3 +22,33 @@ pub struct Enemy;
 // a new tag component for moving randomly
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MovingRandomly;
+
+
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MovingRandomlyByTime;
+
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct WantToMove {
+    pub entity: Entity,
+    pub destination: Point,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct Health {
+    pub current: i32,
+    pub max: i32
+}
+
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct Experience {
+    pub current: i32,
+    pub threshold: i32,
+    pub level: i32
+}
+
+
+#[derive(Clone, PartialEq)]
+pub struct Name(pub String); // a struct can also be a tuple
+
+#[derive(Clone, PartialEq)]
+pub struct Time(pub f32); 
