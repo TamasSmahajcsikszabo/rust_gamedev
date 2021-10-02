@@ -44,6 +44,7 @@ pub fn player_input(
                 WantToMove {
                     entity: *entity,
                     destination,
+                    position: *pos
                 },
             ));
         });

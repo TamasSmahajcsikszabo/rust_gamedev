@@ -31,6 +31,7 @@ pub struct MovingRandomlyByTime;
 pub struct WantToMove {
     pub entity: Entity,
     pub destination: Point,
+    pub position: Point,
 }
 
 #[derive(Clone, Copy, Debug, PartialEq)]

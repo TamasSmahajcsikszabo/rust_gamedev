@@ -18,7 +18,7 @@ pub fn random_move(ecs: &mut SubWorld, commands: &mut CommandBuffer) {
             _ => Point::new(0, 1),
         } + *pos;
 
-        commands.push(((), WantToMove{entity: *entity, destination}));
+        commands.push(((), WantToMove{entity: *entity, destination, position: *pos}));
 
     });
 }
