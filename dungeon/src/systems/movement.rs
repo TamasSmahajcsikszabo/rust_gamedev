@@ -6,7 +6,6 @@ pub use legion::world::SubWorld;
 
 #[system(for_each)]
 #[read_component(Player)]
-#[write_component(Time)]
 pub fn movement(
     entity: &Entity,
     want_move: &WantToMove,

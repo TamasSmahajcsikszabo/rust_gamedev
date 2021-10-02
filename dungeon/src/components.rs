@@ -51,5 +51,3 @@ pub struct Experience {
 #[derive(Clone, PartialEq)]
 pub struct Name(pub String); // a struct can also be a tuple
 
-#[derive(Clone, PartialEq)]
-pub struct Time(pub f32); 

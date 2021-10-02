@@ -26,6 +26,7 @@ mod prelude {
 
 use prelude::*;
 
+
 // Map (and equally Camera) is no longer part of State
 // it's a shared resource between all systems
 struct State {
@@ -34,7 +35,7 @@ struct State {
     input_systems: Schedule,
     player_systems: Schedule,
     monster_systems: Schedule,
-    time: f32
+    time: f32,
 }
 
 
@@ -60,7 +61,7 @@ impl State {
             input_systems: build_input_scheduler(),
             player_systems: build_player_scheduler(),
             monster_systems: build_monster_scheduler(),
-            time: 0.0
+            time: 0.0,
         }
     }
 }
@@ -75,6 +76,8 @@ impl GameState for State {
         ctx.set_active_console(2); // make sure the third layer is also cleared and rendered
         ctx.cls();
         self.resources.insert(ctx.key); // tracks keyboard state for any system
+        ctx.set_active_console(0);
+        self.resources.insert(Point::from_tuple(ctx.mouse_pos())); // Rust's constructor convention from_x()
         self.time += ctx.frame_time_ms;
         self.resources.insert(self.time);
         // ctx.print(0,5,self.time);
