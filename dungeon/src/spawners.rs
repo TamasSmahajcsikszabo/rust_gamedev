@@ -20,18 +20,18 @@ pub fn spawn_player(ecs: &mut World, pos: Point) {
     ));
 }
 
-fn goblin() -> (i32, String, FontCharType) {
+fn goblin() -> (i32, String, FontCharType, i32) {
     // hit point, name, glyph
-    (1, "Goblin".to_string(), to_cp437('g'))
+    (1, "Goblin".to_string(), to_cp437('g'), 15)
 }
 
-fn orc() -> (i32, String, FontCharType) {
-    (2, "Orc".to_string(), to_cp437('o'))
+fn orc() -> (i32, String, FontCharType, i32) {
+    (2, "Orc".to_string(), to_cp437('o'), 30)
 }
 
 pub fn spawn_monster(ecs: &mut World, rng: &mut RandomNumberGenerator, pos: Point) {
 
-    let (hp, name, glyph) = match rng.roll_dice(1,10) { //destructure the tuple
+    let (hp, name, glyph, thoughness) = match rng.roll_dice(1,10) { //destructure the tuple
         1..=8 => goblin(),
         _ => orc()
     };
@@ -46,6 +46,7 @@ pub fn spawn_monster(ecs: &mut World, rng: &mut RandomNumberGenerator, pos: Poin
         MovingRandomly {},
         MovingRandomlyByTime {},
         Health { current: hp, max: hp },
+        Thoughness { current: thoughness },
         Name(name) //  the name component is a tuple
     ));
 }

@@ -1,7 +1,6 @@
 #![warn(clippy::pedantic)]
 
 use crate::prelude::*;
-mod collisions;
 mod end_turn;
 mod entity_render;
 mod map_render;
@@ -11,6 +10,7 @@ mod random_move;
 mod hud;
 // mod time;
 mod tooltips;
+mod combat;
 
 // flush is called whenever a system changes the ECS data
 pub fn build_input_scheduler() -> Schedule {
@@ -34,8 +34,9 @@ pub fn build_player_scheduler() -> Schedule {
         // .flush()
         .add_system(movement::movement_system())
         .flush()
-        .add_system(collisions::collisions_system())
-        .flush() // apply changes immediately, i.e. makes it sure collided entities are removed before rendering
+        // deprecated - the old collision sysytem:
+        // .add_system(collisions::collisions_system())
+        // .flush() // apply changes immediately, i.e. makes it sure collided entities are removed before rendering
         .add_system(map_render::map_render_system())
         .add_system(entity_render::entity_render_system())
         .add_system(hud::hud_system())

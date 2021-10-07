@@ -47,7 +47,16 @@ pub struct Experience {
     pub level: i32
 }
 
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct Thoughness {
+    pub current: i32
+}
 
 #[derive(Clone, PartialEq)]
 pub struct Name(pub String); // a struct can also be a tuple
 
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct WantsToAttack {
+    pub attacker: Entity,
+    pub victim: Entity
+}
