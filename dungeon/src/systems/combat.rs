@@ -17,22 +17,22 @@ pub fn combat(ecs: &mut SubWorld, commands: &mut CommandBuffer) {
         .map(|(entity, attack)| (*entity, attack.victim)) // map takes a closure as its parameter
         .collect(); // takes the query's results and put them in the vector
 
-    victims.iter().for_each(|(message, victim)| {
-        if let Ok(toughness) = ecs
-            .entry_mut(*victim)
-            .unwrap()
-            .get_component_mut::<Thoughness>()
-        {
-            println!("Monster toughness: {}", toughness.current);
-        };
-    });
+    // victims.iter().for_each(|(message, victim)| {
+    //     if let Ok(toughness) = ecs
+    //         .entry_mut(*victim)
+    //         .unwrap()
+    //         .get_component_mut::<Thoughness>()
+    //     {
+    //         println!("Monster toughness: {}", toughness.current);
+    //     };
+    // });
 
-    let mut attackers = <(Entity, &mut Experience)>::query();
-    attackers
-        .iter_mut(ecs)
-            .for_each(|(_entity, exp)|{
-                        exp.current += toughness.current;
-            });
+    // let mut attackers = <(Entity, &mut Experience)>::query();
+    // attackers
+    //     .iter_mut(ecs)
+    //         .for_each(|(_entity, exp)|{
+    //                     exp.current += toughness.current;
+    //         });
 
     victims.iter().for_each(|(message, victim)| {
         if let Ok(mut health) = ecs
