@@ -12,6 +12,7 @@ const RESULT: u16 = 24;
 const MAX_POINTS: i32 = 100_000;  // _ in numbers for readability
 
 fn main() {
+    authenticate();
     let mut x = 5;
     println!("The value of x is: {}", x);
     let x = 8;
@@ -52,21 +53,22 @@ fn main() {
     // a single chunk of memory allocated on stack, not on heap
     // same type with fixed length
     // vectors can grow or shrink
-    let a = [1, 2, 3, 4, 5];
     let attributes: [&str; 5] = ["might", "perception", "intuition", "dexterity","determination"];
     // indexing
-    println!("Frist attribute is {}", attributes[0]);
-    println!("Enter an index!");
-    let mut index = String::new();
-    io::stdin().read_line(&mut index).expect("Failed to read the line!");
-    let index: usize = index.trim().parse().expect("Not a number!");
-    let element = a[index];
-    println!("The value of the element at index {} is {}", index, element);
+    // println!("Frist attribute is {}", attributes[0]);
+    // println!("Enter an index!");
+    // let mut index = String::new();
+    // io::stdin().read_line(&mut index).expect("Failed to read the line!");
+    // let index: usize = index.trim().parse().expect("Not a number!");
+    // let element = a[index];
+    // println!("The value of the element at index {} is {}", index, element);
+    indexing();
     let username = get_name();
     println!("Welcome {}", username);
 
     // statements don't return values
     // expressions do
+    // such as {} blocks, new scope definitions, macros, single values representing themselves, calling functions
 
 
 }
@@ -77,4 +79,38 @@ fn get_name()->String {
     io::stdin().read_line(&mut name).expect("Cannot read line!");
     //let name: String = name.trim().expect("Error");
     name
+}
+
+
+fn indexing() {
+    let a = [1, 2, 3, 4, 5];
+    println!("Enter an index!");
+    let mut index = String::new();
+    io::stdin().read_line(&mut index).expect("Failed to read the line!");
+    let index: usize = index.trim().parse().expect("Not a number!");
+    // Rust doesn't try to convert a non-Boolean to Boolean
+    // because if is an expression it can be assigned to a varible with let
+    if index <= a.len() {
+        let element = a[index];
+        println!("The value of the element at index {} is {}", index, element);
+    } else {
+        println!("Indexing out of bound.")
+    }
+}
+
+fn authenticate()-> String{
+    let mut msg = String::new();
+    let token = String::from("Tomi");;
+    loop{
+        println!("\r What's the magic word?");
+        let mut magic = String::new();
+        io::stdin().read_line(&mut magic).expect("Failed to read the line!");
+        println!("Input: {}", magic);
+        let test: bool = magic.eq(&token);
+        println!("Token: {}", token);
+        if test {
+            msg = String::from("You are authenticatd");
+            break msg;
+        }
+    }
 }
